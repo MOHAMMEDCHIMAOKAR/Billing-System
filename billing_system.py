@@ -235,7 +235,7 @@ class Bill_App:
         exit_btn = Button(btn_f, command=self.exit_app, text="Exit", bd=2, bg="#535C68", fg="white", pady=15, width=12, font='arial 13 bold')
         exit_btn.grid(row=0, column=3, padx=5, pady=5)
         self.welcome_bill()
-
+        self.total_bill = 0.0
 
     def total(self):
         self.m_h_g_p = self.hand_gloves.get()*12
@@ -274,7 +274,15 @@ class Bill_App:
         self.c_d_tax = round((self.total_cold_drinks_price * 0.1), 2)
         self.cold_drinks_tax.set("Rs. "+str(self.c_d_tax))
 
-        self.total_bill = float(self.total_medical_price+self.total_grocery_price+self.total_cold_drinks_price+self.c_tax+self.g_tax+self.c_d_tax)
+        # Update the final total calculation here
+        self.total_bill = float(
+            self.total_medical_price +
+            self.total_grocery_price +
+            self.total_cold_drinks_price +
+            self.c_tax +
+            self.g_tax +
+            self.c_d_tax
+        )
 
     def welcome_bill(self):
         self.txtarea.delete('1.0', END)
@@ -347,13 +355,17 @@ class Bill_App:
     def save_bill(self):
         op = messagebox.askyesno("Save Bill", "Do you want to save the bill?")
         if op > 0:
+            # Create bills directory if it doesn't exist
+            if not os.path.exists("bills"):
+                os.makedirs("bills")
+                
             self.bill_data = self.txtarea.get('1.0', END)
             f1 = open("bills/"+str(self.bill_no.get())+".txt", "w")
             f1.write(self.bill_data)
             f1.close()
             messagebox.showinfo("Saved", f"Bill no:{self.bill_no.get()} Saved Successfully")
         else:
-           return
+            return
 
     def find_bill(self):
         present = "no"
@@ -420,4 +432,3 @@ root = Tk()
 obj = Bill_App(root)
 root.mainloop()
 
-   
