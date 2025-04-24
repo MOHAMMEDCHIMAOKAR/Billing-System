@@ -1,0 +1,15 @@
+	Welcome Grocery Retail
+Bill Number:7193
+Customer Name:d
+Phone Number1159865255
+================================
+Products		QTY		Price
+ Cream		2		10
+ Wheat		8		80
+ Sprite		1		10
+ Mineral		1		10
+ Medical Tax			Rs. 0.5
+ Grocery Tax			Rs. 400.0
+ Cold Drinks Tax			Rs. 2.0
+ Total Bil:			 Rs.512.5
+--------------------------------
